@@ -1,0 +1,148 @@
+#################################################################
+#
+#    LAG make file
+#
+#    Purpose            : builds LAG application
+#
+#    File Name          : makefile
+#
+#    Author             : Adam Hawley
+#
+#    Date of Creation   : October 2nd 1996
+#
+#
+#    (c) Copyright 1996 Logica UK Ltd
+#
+#################################################################
+
+ARGS = -g0 -mt
+INCLUDEDIRS = -I./
+COMPFLAGS = $(ARGS) -c $(INCLUDEDIRS)
+
+LAGOBJS = LGapacs.o LGbitfld.o LGconfig.o LGfield.o LGfleprt.o LGintfce.o LGlagapp.o LGlagtrn.o LGlgrint.o LGlgrstt.o LGlgrthr.o LGlogrec.o LGmbdf.o LGmchint.o LGmchstt.o LGmchthr.o LGmsg.o LGomiso.o LGomprt.o LGoperator.o LGoprint.o LGoprstt.o LGoprthr.o LGport.o LGstats.o LGstdiso.o LGsvrint.o LGsvrstt.o LGsvrthr.o LGtcpprt.o LGthread.o LGtran.o LGtstmsg.o LGuxapp.o LGvrfld.o LGvrlfld.o LGx25prt.o
+
+all: $(LAGOBJS) archive
+
+LGapacs.o: LGapacs.cpp LGapacs.h
+	CC $(COMPFLAGS) LGapacs.cpp
+
+LGconfig.o: LGconfig.cpp LGconfig.h
+	CC $(COMPFLAGS) LGconfig.cpp
+
+LGintfce.o: LGintfce.cpp LGintfce.h
+	CC $(COMPFLAGS) LGintfce.cpp
+
+LGlagapp.o: LGlagapp.cpp LGlagapp.h
+	CC $(COMPFLAGS) LGlagapp.cpp
+
+LGlagtrn.o: LGlagtrn.cpp LGlagtrn.h
+	CC $(COMPFLAGS) LGlagtrn.cpp
+
+LGmchint.o: LGmchint.cpp LGmchint.h
+	CC $(COMPFLAGS) LGmchint.cpp
+
+LGmchthr.o: LGmchthr.cpp LGmchthr.h
+	CC $(COMPFLAGS) LGmchthr.cpp
+
+LGmsg.o: LGmsg.cpp LGmsg.h
+	CC $(COMPFLAGS) LGmsg.cpp
+
+LGomiso.o: LGomiso.cpp LGomiso.h
+	CC $(COMPFLAGS) LGomiso.cpp
+
+LGport.o: LGport.cpp LGport.h
+	CC $(COMPFLAGS) LGport.cpp
+
+LGstdiso.o: LGstdiso.cpp LGstdiso.h
+	CC $(COMPFLAGS) LGstdiso.cpp
+
+LGsvrint.o: LGsvrint.cpp LGsvrint.h
+	CC $(COMPFLAGS) LGsvrint.cpp
+
+LGsvrthr.o: LGsvrthr.cpp LGsvrthr.h
+	CC $(COMPFLAGS) LGsvrthr.cpp
+
+LGoprthr.o: LGoprthr.cpp LGoprthr.h
+	CC $(COMPFLAGS) LGoprthr.cpp
+
+LGtcpprt.o: LGtcpprt.cpp LGtcpprt.h
+	CC $(COMPFLAGS) LGtcpprt.cpp
+
+LGx25prt.o: LGx25prt.cpp LGx25prt.h
+	CC $(COMPFLAGS) LGx25prt.cpp
+
+LGthread.o: LGthread.cpp LGthread.h
+	CC $(COMPFLAGS) LGthread.cpp
+
+LGtran.o: LGtran.cpp LGtran.h
+	CC $(COMPFLAGS) LGtran.cpp
+
+LGuxapp.o: LGuxapp.cpp LGuxapp.h
+	CC $(COMPFLAGS) LGuxapp.cpp
+
+LGomprt.o: LGomprt.cpp LGomprt.h
+	CC $(COMPFLAGS) LGomprt.cpp
+
+LGlogrec.o: LGlogrec.cpp LGlogrec.h
+	CC $(COMPFLAGS) LGlogrec.cpp
+
+LGtstmsg.o: LGtstmsg.cpp LGtstmsg.h
+	CC $(COMPFLAGS) LGtstmsg.cpp
+
+LGfleprt.o: LGfleprt.cpp LGfleprt.h
+	CC $(COMPFLAGS) LGfleprt.cpp
+
+LGlgrthr.o: LGlgrthr.cpp LGlgrthr.h
+	CC $(COMPFLAGS) LGlgrthr.cpp
+
+LGlgrint.o: LGlgrint.cpp LGlgrint.h
+	CC $(COMPFLAGS) LGlgrint.cpp
+
+LGoprint.o: LGoprint.cpp LGoprint.h
+	CC $(COMPFLAGS) LGoprint.cpp
+
+LGfield.o: LGfield.cpp LGfield.h
+	CC $(COMPFLAGS) LGfield.cpp
+
+LGvrfld.o: LGvrfld.cpp LGvrfld.h
+	CC $(COMPFLAGS) LGvrfld.cpp
+
+LGvrlfld.o: LGvrlfld.cpp LGvrlfld.h
+	CC $(COMPFLAGS) LGvrlfld.cpp
+
+LGbitfld.o: LGbitfld.cpp LGbitfld.h
+	CC $(COMPFLAGS) LGbitfld.cpp
+
+LGmbdf.o: LGmbdf.cpp
+	CC $(COMPFLAGS) LGmbdf.cpp
+
+LGoperator.o: LGoperator.cpp
+	CC $(COMPFLAGS) LGoperator.cpp
+
+LGstats.o: LGstats.cpp
+	CC $(COMPFLAGS) LGstats.cpp
+
+LGmchstt.o: LGmchstt.cpp
+	CC $(COMPFLAGS) LGmchstt.cpp
+
+LGsvrstt.o: LGsvrstt.cpp
+	CC $(COMPFLAGS) LGsvrstt.cpp
+
+LGlgrstt.o: LGlgrstt.cpp
+	CC $(COMPFLAGS) LGlgrstt.cpp
+
+LGoprstt.o: LGoprstt.cpp
+	CC $(COMPFLAGS) LGoprstt.cpp
+
+LGcommand.o: LGcommand.cpp
+	CC $(COMPFLAGS) LGcommand.cpp
+
+LGNMHTestApp.o: LGNMHTestApp.cpp
+	CC $(COMPFLAGS) LGNMHTestApp.cpp
+
+archive:
+	ar rv ./lib/liblag.a $(LAGOBJS)
+
+clean:
+	rm $(LAGOBJS)
+

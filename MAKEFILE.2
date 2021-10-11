@@ -1,0 +1,46 @@
+#################################################################
+#
+#    LAG make file
+#
+#    Purpose            : builds LAG application
+#
+#    File Name          : makefile
+#
+#    Author             : Adam Hawley
+#
+#    Date of Creation   : October 2nd 1996
+#
+#
+#    (c) Copyright 1996 Logica UK Ltd
+#
+#################################################################
+ 
+all: archive LAGCommand LAGOnLine
+
+ARGS = -g0 -mt
+
+INCLUDEDIRS = -I./
+COMPFLAGS= $(ARGS) $(INCLUDEDIRS)
+
+LIBS = -llag -lsx25 -lrwtool -lsocket -lresolv -lnsl
+LINKFLAGS = -L/opt/SUNWconn/lib -L./lib
+
+archive:
+	CC -xar -o ./lib/liblag.a ./Templates.DB/*.o
+
+LAGOnLine: LGmain.cpp LGtypes.h ./lib/liblag.a
+	CC $(COMPFLAGS) $(LINKFLAGS) LGmain.cpp $(LIBS) -o LAGOnLine
+
+LAGCommand: LGcommand.cpp LGcommand.h LGtypes.h ./lib/liblag.a
+	CC $(COMPFLAGS) $(LINKFLAGS) LGcommand.cpp $(LIBS) -o LAGCommand
+
+LGNMHTestApp: LGx25prt.o LGNMHTestApp.cpp LGtypes.h
+	CC $(COMPFLAGS) -DSELECTING -DMERCHANT $(LINKFLAGS) LGNMHTestApp.cpp $(LIBS) -o LGNMHTestApp
+
+LGNMHCrap: LGNMHCrap.cpp LGtypes.h
+	CC $(COMPFLAGS) $(LINKFLAGS) LGNMHCrap.cpp $(LIBS) -o LGNMHCrap
+
+install:
+	mv LAGOnLine ../bin
+	mv LAGCommand ../bin
+
